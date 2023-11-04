@@ -1,0 +1,2 @@
+[server]
+172.24.103.184 ansible_ssh_user=shirann ansible_ssh_password=F!4ea24e ansible_become_password=F!4ea24e

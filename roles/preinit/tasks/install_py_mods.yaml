@@ -1,0 +1,13 @@
+- name: Set psutil module name
+  ansible.builtin.set_fact:
+    psutil: "python{{ 3 if ansible_python.version.major == 3 else '' }}-psutil"
+
+- name: Install modules
+  ansible.builtin.apt:
+    name: '{{ psutil }}'
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install modules
+  ansible.builtin.yum:
+    name: '{{ psutil }}'
+  when: ansible_distribution == "CentOS"

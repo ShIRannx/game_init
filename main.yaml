@@ -1,0 +1,6 @@
+---
+- name: Game Deployment
+  become: True
+  hosts: server
+  roles:
+    - preinit

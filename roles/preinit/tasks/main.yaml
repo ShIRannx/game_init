@@ -1,0 +1,5 @@
+- name: Install preneeded modules
+  ansible.builtin.import_tasks: install_py_mods.yaml
+
+- name: Check Processes
+  ansible.builtin.import_tasks: check_processes.yaml

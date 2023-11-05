@@ -2,3 +2,6 @@
 # tasks file for initialization
 - name: SSH service settings
   ansible.builtin.import_tasks: ssh.yaml
+    
+- name: Startup script settings
+  ansible.builtin.import_tasks: startup.yaml

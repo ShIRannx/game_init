@@ -1,2 +1,19 @@
 ---
 # vars file for initialization
+initialization_startup:
+  create: true
+  executable: true
+  path: /etc/rc.local
+  reserve:
+    - ^#
+    - ^$
+    - ^[ ]
+    - ^touch
+    - route
+    - flume
+    - elves-agent
+    - zabbix
+    - mount
+  present:
+    - after: '#!'
+      content: /sbin/hwclock --systohc

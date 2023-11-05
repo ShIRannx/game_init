@@ -1,0 +1,25 @@
+---
+- name: Get stat of {{ initialization_startup.path }}
+  ansible.builtin.stat:
+    path: '{{ initialization_startup.path }}'
+  register: startup
+
+- name: Remove lines in {{ initialization_startup.path }}
+  ansible.builtin.lineinfile:
+    path: '{{ initialization_startup.path }}'
+    regexp: '^(?!.*({{ initialization_startup.reserve | join("|") }})).*$'
+    state: absent
+  when: startup.stat.exists
+
+- name: Add lines in {{ initialization_startup.path }}
+  ansible.builtin.lineinfile:
+    create: true
+    state: present
+    line: '{{ line.content }}'
+    path: '{{ initialization_startup.path }}'
+    insertafter: '{{ line.after | default("EOF") }}'
+    mode: "{{ '755' if initialization_startup.executable else '644' }}"
+  loop: '{{ initialization_startup.present }}'
+  when: startup.stat.exists or initialization_startup.create
+  loop_control:
+    loop_var: line

@@ -3,10 +3,3 @@
     name: '{{ initialization_package.remove.name }}'
     state: absent
   when: initialization_package.remove.name is defined
-
-- name: Remove relevant dir of packages
-  ansible.builtin.file:
-    name: '{{ item }}'
-    state: absent
-  when: initialization_package.remove.dir is defined
-  loop: '{{ initialization_package.remove.dir }}'

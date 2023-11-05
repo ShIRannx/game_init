@@ -33,11 +33,14 @@ initialization_user:
 
 initialization_package:
   remove:
-    name:
-      - zabbix-agent
-    dir:
-      - /etc/zabbix
+    - zabbix-agent
 
-initialization_cron:
-  reserve:
-    - monitor4
+initalization_configuration:
+  remove:
+    - /etc/zabbix
+    - /etc/cgrules.conf
+    - /usr/local/filebeat-8.3.3
+    - /etc/cgconfig.d/cgroup.filebeat.conf
+  cron:
+    reserve:
+      - monitor4

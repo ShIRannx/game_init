@@ -1,0 +1,4 @@
+- name: Clean user defined chain of iptables
+  ansible.builtin.iptables:
+    chain: all
+    state: absent

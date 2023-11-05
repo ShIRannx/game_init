@@ -1,7 +1,7 @@
 ---
 # tasks file for initialization
-- name: SSH service settings
-  ansible.builtin.import_tasks: ssh.yaml
+- name: Configuration task
+  ansible.builtin.import_tasks: configuration.yaml
     
 - name: Startup script settings
   ansible.builtin.import_tasks: startup.yaml
@@ -12,5 +12,5 @@
 - name: Package management
   ansible.builtin.import_tasks: package.yaml
     
-- name: Cron settings
-  ansible.builtin.import_tasks: cron.yaml
+- name: Firewall settings
+  ansible.builtin.import_tasks: firewall.yaml

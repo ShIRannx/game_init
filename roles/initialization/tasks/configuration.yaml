@@ -1,0 +1,46 @@
+- name: Get  stats of SSH conf
+  ansible.builtin.stat:
+    path: /etc/ssh/sshd_config
+  register: sshd_config
+
+- name: Copy configuration of SSH service
+  ansible.builtin.copy:
+    src: sshd_config
+    dest: /etc/ssh/
+    mode: '644'
+  when: (not sshd_config.stat.exists) or overwrite.sshd_config
+  notify:
+    - Restart sshd service
+
+- name: Get stat of ipset_list conf
+  ansible.builtin.stat:
+    path: /etc/sysconfig/ipset_list.txt
+  register: ipset_list
+
+- name: Empty ipset_list
+  ansible.builtin.copy:
+    content: ''
+    dest: /etc/sysconfig/ipset_list.txt
+    mode: '644'
+  when: ipset_list.stat.exists
+
+- name: Remove conf files
+  ansible.builtin.file:
+    name: '{{ item }}'
+    state: absent
+  when: initialization_configuration.remove is defined
+  loop: '{{ initialization_configuration.remove }}'
+
+- name: Get all useless cron files
+  ansible.builtin.find:
+    use_regex: true
+    file_type: file
+    path: "{{ cron_path[ansible_distribution | lower] }}"
+    pattern: '^(?!.*({{ initalization_configuration.cron.reserve | join("|") }})).*$'
+  register: cron
+
+- name: Remove cron
+  ansible.builtin.file:
+    state: absent
+    path: "{{ item }}"
+  loop: "{{ cron.files | json_query('[].path') | flatten }}"

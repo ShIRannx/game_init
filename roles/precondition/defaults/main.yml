@@ -1,4 +1,2 @@
 ---
 # defaults file for shared
-needed_modules: 
-  - "psutils"

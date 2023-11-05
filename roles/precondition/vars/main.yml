@@ -1,0 +1,15 @@
+---
+processes:
+  - mysql
+  - scp
+  - node
+  - redis
+  - nginx
+
+ports:
+  - 9001
+  - 9010
+  - 9020
+  - 9030
+  - 9040
+  - 9050

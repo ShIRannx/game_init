@@ -1,0 +1,7 @@
+- name: Check ports
+  ansible.builtin.wait_for:
+    sleep: 0
+    timeout: 1
+    port: '{{ item }}'
+    state: stopped
+  loop: '{{ ports }}'

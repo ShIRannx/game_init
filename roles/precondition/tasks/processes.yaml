@@ -1,0 +1,14 @@
+- name: Get pids of processes
+  ansible.builtin.pids:
+    name: '{{ item }}'
+  register: proc
+  loop: '{{ processes }}'
+
+- name: Gather pids
+  ansible.builtin.set_fact:
+    running_proc_pids: "{{ proc.results | json_query('[].pids') | flatten }}"
+
+- name: Verify if there are running process
+  ansible.builtin.fail:
+    msg: "pids: {{ running_proc_pids | join(', ') }} are running"
+  when: running_proc_pids

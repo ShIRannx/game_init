@@ -1,5 +1,5 @@
 - name: Install needed modules
-  ansible.builtin.import_tasks: mods.yaml
+  ansible.builtin.import_tasks: dependencies.yaml
 
 - name: Check ports
   ansible.builtin.import_tasks: ports.yaml

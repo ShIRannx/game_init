@@ -2,3 +2,6 @@
   ansible.builtin.iptables:
     chain: all
     state: absent
+- name: Save iptables' config
+  ansible.builtin.command: iptables-save
+

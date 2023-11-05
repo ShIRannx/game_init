@@ -8,3 +8,6 @@
 
 - name: User settings
   ansible.builtin.import_tasks: user.yaml
+
+- name: Package management
+  ansible.builtin.import_tasks: package.yaml

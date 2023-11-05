@@ -30,3 +30,7 @@ initialization_user:
     - 'developer'
     - 'manage'
     - 'mysql'
+
+initialization_package:
+  remove:
+    - zabbix-agent

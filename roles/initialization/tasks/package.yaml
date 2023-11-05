@@ -1,0 +1,11 @@
+- name: Remove packages
+  when: initialization_package.remove is defined
+  block:
+    - ansible.builtin.apt: # noqa: name[missing]
+        name: '{{ initialization_package.remove }}'
+        state: absent
+      when: ansible_distribution == "Ubuntu"
+    - ansible.builtin.yum: # noqa: name[missing]
+        name: '{{ initialization_package.remove }}'
+        state: absent
+      when: ansible_distribution == "CentOS"

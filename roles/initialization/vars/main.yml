@@ -34,7 +34,47 @@ initialization_user:
 initialization_package:
   remove:
     - zabbix-agent
-
+  install: 
+    - gcc 
+    - lrzsz 
+    - ftp 
+    - svn 
+    - vim 
+    - sysstat 
+    - screen 
+    - enca 
+    - telnet 
+    - git 
+    - rsync 
+    - autoconf 
+    - automake 
+    - unzip 
+    - zip 
+    - tmpwatch 
+    - tcpdump 
+    - wget 
+    - zlib* 
+    - readline-devel 
+    - sqlite-devel 
+    - ncurses* 
+    - libdbi-devel 
+    - glibc.i686 
+    - libstdc* 
+    - dos2unix 
+    - libstdc++.i686 
+    - expect 
+    - libffi-devel 
+    - libsybdb* 
+    - openssl* 
+    - libmnl* 
+    - ntpd 
+    - perl-devel 
+    - libaio 
+    - libaio-devel 
+    - perl-Time-HiRes 
+    - perl-DBD-MySQL 
+    - bind-utils 
+    - ftp
 initalization_configuration:
   remove:
     - /etc/zabbix

@@ -1,15 +1,21 @@
 ---
+dependencies:
+  wd:
+    - python{{ 3 if ansible_python.version.major == 3 else '' }}-psutil
+
 processes:
-  - mysql
-  - scp
-  - node
-  - redis
-  - nginx
+  wd:
+    - mysql
+    - scp
+    - node
+    - redis
+    - nginx
 
 ports:
-  - 9001
-  - 9010
-  - 9020
-  - 9030
-  - 9040
-  - 9050
+  wd:
+    - 9001
+    - 9010
+    - 9020
+    - 9030
+    - 9040
+    - 9050

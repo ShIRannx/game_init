@@ -1,16 +1,5 @@
-# - name: Set psutil module name
-#   ansible.builtin.set_fact:
-#     psutil: "python{{ 3 if ansible_python.version.major == 3 else '' }}-psutil"
-
-- name: Install modules
-  when: precondition_dependencies[game]
-  block:
-    - ansible.builtin.apt: # noqa: name[missing]
-        name: '{{ item }}'
-      loop: '{{ precondition_dependencies[game] }}'
-      when: ansible_distribution == "Ubuntu"
-
-    - ansible.builtin.yum: # noqa: name[missing]
-        name: '{{ item }}'
-      loop: '{{ precondition_dependencies[game] }}'
-      when: ansible_distribution == "CentOS"
+- name: Install dependencies
+  ansible.builtin.package:
+    name: '{{ precondition_dependencies[game] }}'
+    state: present
+  when: precondition_dependencies[game] is defined

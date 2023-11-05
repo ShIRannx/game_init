@@ -37,3 +37,7 @@ initialization_package:
       - zabbix-agent
     dir:
       - /etc/zabbix
+
+initialization_cron:
+  reserve:
+    - monitor4

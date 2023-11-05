@@ -1,9 +1,9 @@
 ---
-dependencies:
+precondition_dependencies:
   wd:
     - python{{ 3 if ansible_python.version.major == 3 else '' }}-psutil
 
-processes:
+precondition_processes:
   wd:
     - mysql
     - scp
@@ -11,7 +11,7 @@ processes:
     - redis
     - nginx
 
-ports:
+precondition_ports:
   wd:
     - 9001
     - 9010

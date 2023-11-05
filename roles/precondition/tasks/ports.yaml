@@ -4,4 +4,4 @@
     timeout: 1
     port: '{{ item }}'
     state: stopped
-  loop: '{{ ports[game] }}'
+  loop: '{{ precondition_ports[game] }}'

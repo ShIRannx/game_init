@@ -2,7 +2,7 @@
   ansible.builtin.pids:
     name: '{{ item }}'
   register: proc
-  loop: '{{ processes[game] }}'
+  loop: '{{ precondition_processes[game] }}'
 
 - name: Gather pids
   ansible.builtin.set_fact:

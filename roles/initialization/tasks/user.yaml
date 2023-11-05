@@ -1,0 +1,17 @@
+- name: Delete users
+  ansible.builtin.user:
+    name: "{{ user }}"
+    state: absent
+    remove: true
+  loop: "{{ initialization_user.delete }}"
+  loop_control:
+    loop_var: user
+
+- name: Absent from sudoers
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: absent
+    search_string: "{{ user }}"
+  loop: "{{ initialization_user.delete }}"
+  loop_control:
+    loop_var: user

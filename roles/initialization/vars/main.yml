@@ -17,3 +17,16 @@ initialization_startup:
   present:
     - after: '#!'
       content: /sbin/hwclock --systohc
+
+initialization_user:
+  delete:
+    - 'chenl'
+    - 'huangyd'
+    - 'tangzc'
+    - 'gbit'
+    - 'lif'
+    - 'asktao'
+    - 'apex'
+    - 'developer'
+    - 'manage'
+    - 'mysql'

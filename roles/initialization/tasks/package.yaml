@@ -1,11 +1,12 @@
 - name: Remove packages
-  when: initialization_package.remove is defined
-  block:
-    - ansible.builtin.apt: # noqa: name[missing]
-        name: '{{ initialization_package.remove }}'
-        state: absent
-      when: ansible_distribution == "Ubuntu"
-    - ansible.builtin.yum: # noqa: name[missing]
-        name: '{{ initialization_package.remove }}'
-        state: absent
-      when: ansible_distribution == "CentOS"
+  ansible.builtin.package:
+    name: '{{ initialization_package.remove.name }}'
+    state: absent
+  when: initialization_package.remove.name is defined
+
+- name: Remove relevant dir of packages
+  ansible.builtin.file:
+    name: '{{ item }}'
+    state: absent
+  when: initialization_package.remove.dir is defined
+  loop: '{{ initialization_package.remove.dir }}'

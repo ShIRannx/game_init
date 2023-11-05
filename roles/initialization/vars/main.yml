@@ -33,4 +33,7 @@ initialization_user:
 
 initialization_package:
   remove:
-    - zabbix-agent
+    name:
+      - zabbix-agent
+    dir:
+      - /etc/zabbix

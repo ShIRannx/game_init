@@ -1,0 +1,4 @@
+---
+# tasks file for initialization
+- name: SSH service tasks
+  ansible.builtin.import_tasks: ssh.yaml

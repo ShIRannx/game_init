@@ -3,4 +3,6 @@
   become: True
   hosts: server
   roles:
-    - preinit
+    - precondition
+    - role: initialization
+      tags: init

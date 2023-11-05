@@ -1,0 +1,4 @@
+---
+# defaults file for initialization
+overwrite:
+  sshd_config: false

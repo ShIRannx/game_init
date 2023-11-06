@@ -1,7 +1,7 @@
 ---
 precondition_dependencies:
   wd:
-    - python{{ 3 if ansible_python.version.major == 3 else '' }}-psutil
+    - python{{ (ansible_python.version.major == 3) | ternary('3', '') }}-psutil
 
 precondition_processes:
   wd:

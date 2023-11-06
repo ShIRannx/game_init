@@ -18,7 +18,7 @@
     line: '{{ line.content }}'
     path: '{{ initialization_startup.path }}'
     insertafter: '{{ line.after | default("EOF") }}'
-    mode: "{{ '755' if initialization_startup.executable else '644' }}"
+    mode: "{{ (initialization_startup.executable) | ternary('755', '644') }}"
   loop: '{{ initialization_startup.insert }}'
   when: startup.stat.exists or initialization_startup.create
   loop_control:

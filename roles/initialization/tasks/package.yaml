@@ -8,10 +8,9 @@
   ansible.builtin.package:
     name: '{{ initialization_package.install }}'
     state: present
+  ignore_errors: true
   register: install
   when: initialization_package.install is defined
   until: install is succeeded
   retries: 3
   delay: 3
-  
-

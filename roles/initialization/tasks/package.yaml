@@ -7,7 +7,7 @@
 - name: Install packages
   ansible.builtin.package:
     name: '{{ initialization_package.install }}'
-    state: absent
+    state: present
   register: install
   when: initialization_package.install is defined
   until: install is succeeded

@@ -34,48 +34,49 @@ initialization_user:
 initialization_package:
   remove:
     - zabbix-agent
-  install: 
-    - gcc 
-    - lrzsz 
-    - ftp 
-    - svn 
-    - vim 
-    - sysstat 
-    - screen 
-    - enca 
-    - telnet 
-    - git 
-    - rsync 
-    - autoconf 
-    - automake 
-    - unzip 
-    - zip 
-    - tmpwatch 
-    - tcpdump 
-    - wget 
-    - zlib* 
-    - readline-devel 
-    - sqlite-devel 
-    - ncurses* 
-    - libdbi-devel 
-    - glibc.i686 
-    - libstdc* 
-    - dos2unix 
-    - libstdc++.i686 
-    - expect 
-    - libffi-devel 
-    - libsybdb* 
-    - openssl* 
-    - libmnl* 
-    - ntpd 
-    - perl-devel 
-    - libaio 
-    - libaio-devel 
-    - perl-Time-HiRes 
-    - perl-DBD-MySQL 
-    - bind-utils 
+  install:
+    - gcc
+    - lrzsz
     - ftp
-initalization_configuration:
+    - svn
+    - vim
+    - sysstat
+    - screen
+    - enca
+    - telnet
+    - git
+    - rsync
+    - autoconf
+    - automake
+    - unzip
+    - zip
+    - tmpwatch
+    - tcpdump
+    - wget
+    - zlib*
+    - readline-devel
+    - sqlite-devel
+    - ncurses*
+    - libdbi-devel
+    - glibc.i686
+    - libstdc*
+    - dos2unix
+    - libstdc++.i686
+    - expect
+    - libffi-devel
+    - libsybdb*
+    - openssl*
+    - libmnl*
+    - ntpd
+    - perl-devel
+    - libaio
+    - libaio-devel
+    - perl-Time-HiRes
+    - perl-DBD-MySQL
+    - bind-utils
+    - ftp
+
+initialization_configuration:
   remove:
     - /etc/zabbix
     - /etc/cgrules.conf
@@ -84,3 +85,6 @@ initalization_configuration:
   cron:
     reserve:
       - monitor4
+  profile:
+    - name: TMOUT
+      value: 14400

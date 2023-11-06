@@ -35,14 +35,14 @@
   ansible.builtin.find:
     use_regex: true
     file_type: file
-    path: "{{ cron_path[ansible_distribution | lower] }}"
+    path: '{{ cron_path[ansible_distribution | lower] }}'
     pattern: '^(?!.*({{ initalization_configuration.cron.reserve | join("|") }})).*$'
   register: cron
 
 - name: Remove cron
   ansible.builtin.file:
     state: absent
-    path: "{{ item }}"
+    path: '{{ item }}'
   loop: "{{ cron.files | json_query('[].path') | flatten }}"
 
 - name: Reset hosts file
@@ -50,3 +50,10 @@
     src: hosts
     dest: /etc/
     mode: '644'
+
+- name: Global profile configure
+  ansible.builtin.lineinfile:
+    path: /etc/profile
+    search_string: '{{ item.name | upper }}'
+    line: '{{ item.name | upper }}={{ item.value }}'
+  loop: '{{ initialization_configuration.profile }}'

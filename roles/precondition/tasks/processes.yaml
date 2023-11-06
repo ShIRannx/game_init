@@ -6,7 +6,10 @@
 
 - name: Gather pids
   ansible.builtin.set_fact:
-    running_proc_pids: "{{ proc.results | json_query('[].pids') | flatten }}"
+    running_proc_pids: '{{ running_proc_pids | default([]) + item.pids | flatten }}'
+  loop: '{{ proc.results }}'
+  loop_control:
+    label: '{{ item.item }} => {{ item.pids }}'
 
 - name: Verify if there are running process
   ansible.builtin.fail:

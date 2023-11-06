@@ -39,11 +39,19 @@
     pattern: '^(?!.*({{ initialization_configuration.cron.reserve | join("|") }})).*$'
   register: cron
 
+- name: Gather list of cron files to be deleted
+  ansible.builtin.set_fact:
+    cron_trash: '{{ cron_trash | default([]) + [item.path] }}'
+  loop: '{{ cron.files }}'
+  loop_control:
+    label: '{{ item.path }}'
+
 - name: Remove cron
   ansible.builtin.file:
     state: absent
     path: '{{ item }}'
-  loop: "{{ cron.files | json_query('[].path') | flatten }}"
+  loop: '{{ cron_trash }}'
+  when: cron_trash is defined
 
 - name: Reset hosts file
   ansible.builtin.copy:

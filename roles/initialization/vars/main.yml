@@ -14,7 +14,7 @@ initialization_startup:
     - elves-agent
     - zabbix
     - mount
-  present:
+  insert:
     - after: '#!'
       content: /sbin/hwclock --systohc
 
